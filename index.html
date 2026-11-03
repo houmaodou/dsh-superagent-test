@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>H5 围棋 - Go Game</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <h1 class="logo">围棋</h1>
+      <div class="status-bar">
+        <div class="turn-indicator">
+          <span class="stone-preview" id="currentStone"></span>
+          <span class="turn-text" id="turnText">黑棋走</span>
+        </div>
+        <div class="captures">
+          <div class="capture-item capture-black">
+            <span class="mini-stone"></span>
+            <span class="capture-count" id="blackCaptures">0</span>
+          </div>
+          <div class="capture-item capture-white">
+            <span class="mini-stone"></span>
+            <span class="capture-count" id="whiteCaptures">0</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="game-area">
+      <div class="board-wrap" id="boardWrap">
+        <canvas id="board" tabindex="0"></canvas>
+        <div class="hint" id="hint">点击棋盘落子</div>
+      </div>
+    </main>
+
+    <section class="controls">
+      <div class="control-row">
+        <button class="btn" id="undoBtn" title="悔棋">悔棋</button>
+        <button class="btn" id="passBtn" title="停一手">停一手</button>
+        <button class="btn" id="newGameBtn" title="新对局">新对局</button>
+      </div>
+      <div class="control-row size-row">
+        <span class="label">棋盘</span>
+        <button class="btn size-btn" data-size="7">7</button>
+        <button class="btn size-btn active" data-size="9">9</button>
+        <button class="btn size-btn" data-size="13">13</button>
+        <button class="btn size-btn" data-size="19">19</button>
+      </div>
+      <div class="control-row mode-row">
+        <span class="label">模式</span>
+        <button class="btn mode-btn active" id="twoPlayerBtn">双人对弈</button>
+        <button class="btn mode-btn" id="aiBtn">人机对战</button>
+      </div>
+      <div class="control-row ko-rule-row">
+        <span class="label">规则</span>
+        <button class="btn rule-btn" id="chineseRuleBtn">中国规则</button>
+        <button class="btn rule-btn" id="japaneseRuleBtn">日本规则</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <button class="link-btn" id="scoreBtn">计算目数</button>
+      <span class="footer-note">点击结算或双方停一手</span>
+    </footer>
+
+    <!-- 结算弹窗 -->
+    <div class="modal-overlay hidden" id="resultModal">
+      <div class="modal">
+        <h2 id="resultTitle">对局结束</h2>
+        <p class="result-detail" id="resultDetail"></p>
+        <div class="capture-counts" id="resultCounts"></div>
+        <div class="modal-actions">
+          <button class="btn primary" id="playAgainBtn">再来一局</button>
+          <button class="btn" id="closeResultBtn">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/go.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
