@@ -1,0 +1,203 @@
+:root {
+  --bg: #1d2b1f;
+  --panel: #f7f1e1;
+  --wood: #d9a95e;
+  --wood-dark: #c08b3e;
+  --ink: #2a2a2a;
+  --accent: #5b8def;
+  --muted: #6b6b6b;
+  --black-stone: radial-gradient(circle at 35% 30%, #5a5a5a, #1a1a1a 70%);
+  --white-stone: radial-gradient(circle at 35% 30%, #ffffff, #cfcfcf 75%);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  background: linear-gradient(160deg, #223a26 0%, #16251a 100%);
+  color: #f4f0e6;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px calc(14px + env(safe-area-inset-bottom));
+}
+
+/* 顶栏 */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 2px 10px;
+}
+
+.logo {
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.status-bar { display: flex; align-items: center; gap: 10px; }
+
+.turn-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.stone-preview {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--black-stone);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+}
+
+.stone-preview.white { background: var(--white-stone); }
+
+.turn-text { font-size: 14px; font-weight: 600; }
+
+/* 棋盘区域 */
+.game-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-wrap {
+  position: relative;
+  width: 100%;
+}
+
+#board {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+  background: var(--wood);
+  cursor: crosshair;
+  outline: none;
+}
+
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* 控制区 */
+.controls {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.control-row .label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 2px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4f0e6;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.05s;
+  min-width: 52px;
+}
+
+.btn:active { transform: scale(0.96); }
+
+.btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn.primary { background: #3ecf6f; border-color: #3ecf6f; color: #03210f; font-weight: 700; }
+
+/* 页脚 */
+.footer {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.footer-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.modal-overlay.hidden { display: none; }
+
+.modal {
+  background: var(--panel);
+  color: var(--ink);
+  width: min(84vw, 320px);
+  border-radius: 16px;
+  padding: 24px 22px;
+  text-align: center;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+  animation: pop 0.18s ease-out;
+}
+
+@keyframes pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal h2 { margin: 0 0 8px; font-size: 20px; }
+
+.result-detail { margin: 0 0 20px; font-size: 15px; color: var(--muted); }
+
+.modal-actions { display: flex; justify-content: center; gap: 10px; }
+
+@media (min-width: 600px) {
+  .btn { padding: 9px 16px; font-size: 15px; }
+}
