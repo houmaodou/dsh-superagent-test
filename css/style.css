@@ -1,0 +1,228 @@
+:root {
+  --wood: #d9b36a;
+  --wood-dark: #c29a4e;
+  --board-line: #5a4322;
+  --bg: #f4efe6;
+  --panel: #ffffff;
+  --ink: #2b2b2b;
+  --accent: #7a5a2e;
+  --accent-2: #4a6fa5;
+  --black-stone: #101010;
+  --white-stone: #f7f7f4;
+  --shadow: 0 6px 24px rgba(60, 45, 20, 0.18);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 12px 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-header {
+  text-align: center;
+}
+
+.app-header h1 {
+  margin: 4px 0 0;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.app-header .sub {
+  font-size: 12px;
+  color: #8a7a5c;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+/* Board */
+.board-wrap {
+  background: var(--wood);
+  border: 1px solid var(--board-line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas#board {
+  display: block;
+  border-radius: 4px;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+/* Status bar */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--panel);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 10px 14px;
+  font-size: 14px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.turn-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.turn-indicator .dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.turn-indicator .dot.black { background: var(--black-stone); border: 1px solid #666; }
+.turn-indicator .dot.white { background: var(--white-stone); border: 1px solid #999; }
+
+.captures { color: #6a6048; }
+
+/* Controls */
+.controls {
+  background: var(--panel);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.controls .row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: #6a6048;
+  flex: 1 1 0;
+  min-width: 90px;
+}
+
+select {
+  font-size: 14px;
+  padding: 8px 6px;
+  border: 1px solid #d8cdb8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  appearance: none;
+  text-align: center;
+}
+
+.buttons { justify-content: stretch; }
+
+.buttons button {
+  flex: 1 1 0;
+  min-width: 70px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 11px 6px;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--accent);
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.15s ease;
+}
+
+.buttons button:active { transform: scale(0.97); }
+.buttons button#btn-score { background: var(--accent-2); }
+.buttons button#btn-undo { background: #8a6d4a; }
+.buttons button:disabled { opacity: 0.5; cursor: default; }
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 22, 10, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+.modal.hidden { display: none; }
+
+.modal-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+}
+
+.modal-card h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.result-row.winner {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent);
+  border-bottom: none;
+  margin-top: 6px;
+  justify-content: center;
+  gap: 8px;
+}
+
+.modal-card button {
+  margin-top: 16px;
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hidden { display: none !important; }
