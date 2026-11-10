@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>H5 围棋 · Go</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>围棋 <span class="sub">H5 GO</span></h1>
+    </header>
+
+    <div class="board-wrap">
+      <canvas id="board" width="600" height="600"></canvas>
+    </div>
+
+    <div class="status-bar">
+      <span id="turn-indicator" class="turn-indicator">
+        <span id="turn-dot" class="dot black"></span>
+        <span id="turn-text">黑方落子</span>
+      </span>
+      <span id="captures" class="captures">提子 黑 0 · 白 0</span>
+    </div>
+
+    <div class="controls">
+      <div class="row">
+        <label>棋盘
+          <select id="size-select">
+            <option value="9" selected>9×9</option>
+            <option value="13">13×13</option>
+            <option value="19">19×19</option>
+          </select>
+        </label>
+        <label>模式
+          <select id="mode-select">
+            <option value="pvp" selected>双人对弈</option>
+            <option value="ai">人机对战</option>
+          </select>
+        </label>
+        <label>执子
+          <select id="color-select">
+            <option value="black" selected>执黑</option>
+            <option value="white">执白</option>
+          </select>
+        </label>
+      </div>
+      <div class="row buttons">
+        <button id="btn-new">新对局</button>
+        <button id="btn-undo">悔棋</button>
+        <button id="btn-pass">停一手</button>
+        <button id="btn-score">数目</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h2>对局结果</h2>
+      <div id="modal-body"></div>
+      <button id="btn-close-modal">关闭</button>
+    </div>
+  </div>
+
+  <script src="js/go.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
